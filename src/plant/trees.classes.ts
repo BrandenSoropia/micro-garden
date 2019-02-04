@@ -17,7 +17,11 @@ export class Tree {
   static type: string = TREE;
 }
 
-export const MAPLE_THRESHOLDS = {
+export const MAPLE_THRESHOLDS: {
+  SPROUT: number;
+  SAPLING: number;
+  RIPE: number;
+} = {
   SPROUT: 1,
   SAPLING: 3,
   RIPE: 5
