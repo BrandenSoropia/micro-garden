@@ -15,16 +15,32 @@ interface State {
 
 export class Tree {
   static type: string = TREE;
-  static thresholds: number[] = [1, 2, 3];
 }
 
+export const MAPLE_THRESHOLDS = {
+  SPROUT: 1,
+  SAPLING: 3,
+  RIPE: 5
+};
 export class Maple extends Tree {
   static _name: string = MAPLE_TREE;
   static states: State[] = [
     // Do not include SEED state, should be the same and assumed across all plants
-    { type: SPROUT, threshold: 1, sprite: MapleSprout },
-    { type: SAPLING, threshold: 3, sprite: MapleSapling },
-    { type: RIPE, threshold: 5, sprite: MapleMature }
+    {
+      type: SPROUT,
+      threshold: MAPLE_THRESHOLDS.SPROUT,
+      sprite: MapleSprout
+    },
+    {
+      type: SAPLING,
+      threshold: MAPLE_THRESHOLDS.SAPLING,
+      sprite: MapleSapling
+    },
+    {
+      type: RIPE,
+      threshold: MAPLE_THRESHOLDS.RIPE,
+      sprite: MapleMature
+    }
   ];
   static getSprite(progress: number) {
     let sprite: string = Seed;

@@ -7,19 +7,6 @@ interface IProps {
   progress: number;
 }
 
-export const generateSprite = (
-  type: string,
-  progress: number,
-  thresholds: number[]
-) => {
-  if (type === TREE) {
-    MapleTree.thresholds.forEach((threshold: number) => {
-      if (progress > threshold) {
-      }
-    });
-  }
-};
-
 interface IGeneratePlant {
   type: string;
   progress: number;
