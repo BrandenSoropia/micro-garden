@@ -1,11 +1,18 @@
 import React from "react";
 import { Plant } from "../plant/plant.component";
-import { TREE } from "../common/plant-types.constants";
+import { Maple as _MapleTree } from "../plant/plant.classes";
 
-const GameManager = () => (
-  <div>
-    <Plant type={TREE} progress={3} />
-  </div>
-);
+const GameManager = () => {
+  const MapleTreeSeed = new _MapleTree();
+
+  const MapleTreeSprout = new _MapleTree();
+  MapleTreeSprout.updateProgress(3);
+  return (
+    <div>
+      <Plant plant={MapleTreeSeed} />
+      <Plant plant={MapleTreeSprout} />
+    </div>
+  );
+};
 
 export default GameManager;
