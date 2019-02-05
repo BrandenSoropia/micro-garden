@@ -47,8 +47,14 @@ export class Maple extends Tree {
   }
   sprite: string | null = null;
   progress: number = 0;
-  updateProgress(value: number) {
+  setProgress(value: number) {
     this.progress = value;
+  }
+  getProgress() {
+    return this.progress;
+  }
+  updateProgress(value: number) {
+    this.setProgress(value);
     this.setSprite();
   }
   readonly name: string = MAPLE_TREE;

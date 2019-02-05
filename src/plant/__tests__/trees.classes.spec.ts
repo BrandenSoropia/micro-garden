@@ -7,33 +7,42 @@ import MapleMature from "../assets/maple-mature.png";
 describe("Tree classes tests", () => {
   describe("Maple tests", () => {
     const MapleTree: Maple = new Maple();
-    it("should return SEED sprite if no progress", () => {
-      MapleTree.setSprite(0);
-      expect(MapleTree.getSprite()).toEqual(Seed);
-    });
-    it("should return SPROUT sprite if exactly on threshold", () => {
-      MapleTree.setSprite(MAPLE_THRESHOLDS.SPROUT);
-      expect(MapleTree.getSprite()).toEqual(MapleSprout);
-    });
-    it("should return SPROUT sprite if above its on threshold but below SAPLING threshold", () => {
-      MapleTree.setSprite(MAPLE_THRESHOLDS.SPROUT + 1);
-      expect(MapleTree.getSprite()).toEqual(MapleSprout);
-    });
-    it("should return SAPLING sprite if exactly on threshold", () => {
-      MapleTree.setSprite(MAPLE_THRESHOLDS.SAPLING);
-      expect(MapleTree.getSprite()).toEqual(MapleSapling);
-    });
-    it("should return SAPLING sprite if above its on threshold but below RIPE threshold", () => {
-      MapleTree.setSprite(MAPLE_THRESHOLDS.SAPLING + 1);
-      expect(MapleTree.getSprite()).toEqual(MapleSapling);
-    });
-    it("should return RIPE sprite if exactly on threshold", () => {
-      MapleTree.setSprite(MAPLE_THRESHOLDS.RIPE);
-      expect(MapleTree.getSprite()).toEqual(MapleMature);
-    });
-    it("should return RIPE sprite if above its on threshold", () => {
-      MapleTree.setSprite(MAPLE_THRESHOLDS.RIPE + 1);
-      expect(MapleTree.getSprite()).toEqual(MapleMature);
+    describe("setSprite tests", () => {
+      it("should return SEED sprite if no progress", () => {
+        MapleTree.setProgress(0);
+        MapleTree.setSprite();
+        expect(MapleTree.getSprite()).toEqual(Seed);
+      });
+      it("should return SPROUT sprite if exactly on threshold", () => {
+        MapleTree.setProgress(MAPLE_THRESHOLDS.SPROUT);
+        MapleTree.setSprite();
+        expect(MapleTree.getSprite()).toEqual(MapleSprout);
+      });
+      it("should return SPROUT sprite if above its on threshold but below SAPLING threshold", () => {
+        MapleTree.setProgress(MAPLE_THRESHOLDS.SPROUT + 1);
+        MapleTree.setSprite();
+        expect(MapleTree.getSprite()).toEqual(MapleSprout);
+      });
+      it("should return SAPLING sprite if exactly on threshold", () => {
+        MapleTree.setProgress(MAPLE_THRESHOLDS.SAPLING);
+        MapleTree.setSprite();
+        expect(MapleTree.getSprite()).toEqual(MapleSapling);
+      });
+      it("should return SAPLING sprite if above its on threshold but below RIPE threshold", () => {
+        MapleTree.setProgress(MAPLE_THRESHOLDS.SAPLING + 1);
+        MapleTree.setSprite();
+        expect(MapleTree.getSprite()).toEqual(MapleSapling);
+      });
+      it("should return RIPE sprite if exactly on threshold", () => {
+        MapleTree.setProgress(MAPLE_THRESHOLDS.RIPE);
+        MapleTree.setSprite();
+        expect(MapleTree.getSprite()).toEqual(MapleMature);
+      });
+      it("should return RIPE sprite if above its on threshold", () => {
+        MapleTree.setProgress(MAPLE_THRESHOLDS.RIPE + 1);
+        MapleTree.setSprite();
+        expect(MapleTree.getSprite()).toEqual(MapleMature);
+      });
     });
   });
 });
