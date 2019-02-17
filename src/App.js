@@ -1,25 +1,18 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import Plant from "./plant/plant.component";
+import SpriteMapleMature from "./plant/assets/maple-mature.png";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Plant
+          type="TREE"
+          name="Maple Tree"
+          sprite={SpriteMapleMature}
+          alt="Tree with thick branches full of green leaves held up by a strong trunk. Beneath the foliage, a light shadow is cast underneath."
+        />
       </div>
     );
   }
