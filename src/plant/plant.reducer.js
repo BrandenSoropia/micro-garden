@@ -1,7 +1,8 @@
 import { SET_PLANTS } from "./plant.types";
+import { plantRegistry, TREE, MAPLE_TREE } from "./plant.constants";
 
 export const initialState = {
-  plants: []
+  plants: [plantRegistry[TREE][MAPLE_TREE]]
 };
 
 /**
