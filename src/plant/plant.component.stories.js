@@ -1,7 +1,6 @@
 import React from "react";
 
 import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 
 import Plant from "./plant.component";
 import SpriteMapleMature from "./assets/maple-mature.png";
