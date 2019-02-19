@@ -1,7 +1,7 @@
 import {
   Plant,
   ABSOLUTE_SEED_STATE_PROGRESS,
-  states,
+  STATUS,
   getSeedState
 } from "../plant.constants";
 
@@ -9,18 +9,18 @@ const thresholds = [
   {
     start: ABSOLUTE_SEED_STATE_PROGRESS,
     end: 1,
-    state: states.SEED,
+    status: STATUS.SEED,
     sprite: "SpriteSeed"
   },
   {
     start: 1,
     end: 2,
-    state: states.SPROUT,
+    status: STATUS.SPROUT,
     sprite: "SpriteMapleSprout"
   },
   {
     start: 2,
-    state: states.MATURE,
+    status: STATUS.MATURE,
     sprite: "SpriteMapleMature"
   }
 ];
@@ -40,7 +40,7 @@ describe("Plant constants tests", () => {
         expect(getSeedState(thresholds)).toEqual({
           start: ABSOLUTE_SEED_STATE_PROGRESS,
           end: 1,
-          state: states.SEED,
+          status: STATUS.SEED,
           sprite: "SpriteSeed"
         });
       });
@@ -51,7 +51,7 @@ describe("Plant constants tests", () => {
         expect(mockPlant.findCurrentState()).toEqual({
           start: 0,
           end: 1,
-          state: states.SEED,
+          status: STATUS.SEED,
           sprite: "SpriteSeed"
         });
       });
@@ -61,7 +61,7 @@ describe("Plant constants tests", () => {
         expect(mockPlant.findCurrentState()).toEqual({
           start: 1,
           end: 2,
-          state: states.SPROUT,
+          status: STATUS.SPROUT,
           sprite: "SpriteMapleSprout"
         });
       });
@@ -70,7 +70,7 @@ describe("Plant constants tests", () => {
         mockPlant.setProgress(2);
         expect(mockPlant.findCurrentState()).toEqual({
           start: 2,
-          state: states.MATURE,
+          status: STATUS.MATURE,
           sprite: "SpriteMapleMature"
         });
       });
@@ -79,7 +79,7 @@ describe("Plant constants tests", () => {
         mockPlant.setProgress(5);
         expect(mockPlant.findCurrentState()).toEqual({
           start: 2,
-          state: states.MATURE,
+          status: STATUS.MATURE,
           sprite: "SpriteMapleMature"
         });
       });
@@ -92,7 +92,7 @@ describe("Plant constants tests", () => {
         expect(mockPlant.getProgress()).toBe(2);
         expect(mockPlant.getCurrentState()).toEqual({
           start: 2,
-          state: states.MATURE,
+          status: STATUS.MATURE,
           sprite: "SpriteMapleMature"
         });
       });

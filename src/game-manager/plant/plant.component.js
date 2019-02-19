@@ -1,18 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Plant = ({ type, name, sprite, alt }) => (
+const Plant = ({ name, sprite, alt, status }) => (
   <div>
-    <p>{`${name}: ${type}`}</p>
+    <p>{`${name} (${status})`}</p>
     <img src={sprite} alt={alt} />
   </div>
 );
 
 Plant.propTypes = {
-  type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   sprite: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired
+  alt: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired
 };
 
 export default Plant;

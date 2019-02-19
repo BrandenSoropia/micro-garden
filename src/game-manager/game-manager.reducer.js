@@ -10,7 +10,7 @@ export const initialState = {
  */
 const initializeGame = () => {
   return {
-    plants: [new MapleTree()]
+    plants: [new MapleTree(), new MapleTree()]
   };
 };
 

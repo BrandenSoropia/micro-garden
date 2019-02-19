@@ -12,34 +12,42 @@ import SpriteMapleMature from "./assets/maple-mature.png";
 /**
  * Needed to map plant sprites per each development state.
  */
-export const states = {
-  SEED: "SEED",
-  SPROUT: "SPROUT",
-  SAPLING: "SAPLING",
-  MATURE: "MATURE"
+export const STATUS = {
+  SEED: "Seed",
+  SPROUT: "Sprout",
+  SAPLING: "Sapling",
+  MATURE: "Mature"
 };
 
 /**
- * These constants are needed to navigate the registry and maps sprites to game data.
+ * Plant types and names.
  */
-export const TREE = "TREE"; // Category
-export const MAPLE_TREE = "MAPLE_TREE"; // Plant
+export const TREE = "TREE";
+export const MAPLE_TREE = "Maple Tree";
 
 export const ABSOLUTE_SEED_STATE_PROGRESS = 0;
 
 // In case thresholds array are not in particular order...
 export const getSeedState = thresholds =>
-  thresholds.find(({ state }) => state === states.SEED);
+  thresholds.find(({ status }) => status === STATUS.SEED);
 
 export class Plant {
-  constructor({ name, thresholds, category }) {
+  constructor({ name, thresholds, type }) {
     this.name = name;
     this.thresholds = thresholds;
-    this.category = category;
+    this.type = type;
 
     // Everything starts at 0
     this.progress = 0;
     this.currentState = getSeedState(thresholds);
+  }
+
+  getName() {
+    return this.name;
+  }
+
+  getType() {
+    return this.type;
   }
 
   getThresholds() {
@@ -83,8 +91,16 @@ export class Plant {
     return this.currentState;
   }
 
+  getCurrentStatus() {
+    return this.getCurrentState().status;
+  }
+
   getCurrentSprite() {
     return this.getCurrentState().sprite;
+  }
+
+  getCurrentSpriteAlt() {
+    return this.getCurrentState().alt;
   }
 }
 
@@ -108,28 +124,34 @@ export class MapleTree extends Plant {
       {
         start: ABSOLUTE_SEED_STATE_PROGRESS,
         end: 1,
-        state: states.SEED,
-        sprite: SpriteSeed
+        status: STATUS.SEED,
+        sprite: SpriteSeed,
+        alt: "A brown, oval shaped seed."
       },
       {
         start: 1,
         end: 2,
-        state: states.SPROUT,
-        sprite: SpriteMapleSprout
+        status: STATUS.SPROUT,
+        sprite: SpriteMapleSprout,
+        alt: "A sparse burst of green is starting to top your little sprout."
       },
       {
         start: 2,
         end: 3,
-        state: states.SAPLING,
-        sprite: SpriteMapleSapling
+        status: STATUS.SAPLING,
+        sprite: SpriteMapleSapling,
+        alt:
+          "Supported by a thin, but sturdy trunk, a full head of green leaves rests."
       },
       {
         start: 3,
-        state: states.MATURE,
-        sprite: SpriteMapleMature
+        status: STATUS.MATURE,
+        sprite: SpriteMapleMature,
+        alt:
+          "A thick trunk shoulders a dense collection of bright green leaves so thick, light barely passes through."
       }
     ];
 
-    super({ name, thresholds, category: TREE });
+    super({ name, thresholds, type: TREE });
   }
 }
