@@ -6,9 +6,9 @@ export const initialState = {
 };
 
 /**
- * Initialize plants.
+ * Initialize game.
  */
-const setupGame = () => {
+const initializeGame = () => {
   return {
     plants: [new MapleTree()]
   };
@@ -21,7 +21,7 @@ const setupGame = () => {
 export const GameManagerReducer = (state = initialState, action) => {
   switch (action.type) {
     case INITIALIZE_GAME:
-      return setupGame();
+      return initializeGame();
     default:
       return state;
   }
