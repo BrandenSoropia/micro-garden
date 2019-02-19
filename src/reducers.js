@@ -1,8 +1,7 @@
 import { combineReducers } from "redux";
-import { PlantReducer } from "./plant/plant.reducer";
+import { GameManagerReducer } from "./game-manager/game-manager.reducer";
 
 const rootReducer = combineReducers({
-  plants: PlantReducer
+  app: GameManagerReducer
 });
-
 export default rootReducer;

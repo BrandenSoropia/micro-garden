@@ -2,7 +2,7 @@
  * Source of truth for all plants available in game. All plant game data should come from this
  * file.
  */
-import { inRange, get } from "lodash";
+import { inRange } from "lodash";
 // Sprites
 import SpriteSeed from "./assets/seed.png";
 import SpriteMapleSprout from "./assets/maple-sprout.png";
@@ -101,7 +101,7 @@ export class Plant {
  */
 export class MapleTree extends Plant {
   constructor() {
-    const name = "Maple Tree";
+    const name = MAPLE_TREE;
 
     // Ideally in order of increasing maturity for sanity's sake
     const thresholds = [
