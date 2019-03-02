@@ -7,10 +7,19 @@ import PropTypes from "prop-types";
 const millisecondsToMinutes = milliseconds =>
   Math.round((milliseconds * 100) / 60000) / 100;
 
-const Timer = ({ startTimer, durationInMilliseconds }) => (
+const Timer = ({ startTimer, durationInMilliseconds, clearTimer }) => (
   <div>
     <p>{`Duration: ${millisecondsToMinutes(durationInMilliseconds)} mins`}</p>
-    <button onClick={startTimer}>Start</button>
+    <button
+      onClick={() =>
+        startTimer({
+          startTime: Date.now(),
+          onTimerCompleteCallback: clearTimer
+        })
+      }
+    >
+      Start
+    </button>
   </div>
 );
 

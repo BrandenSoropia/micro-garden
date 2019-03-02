@@ -2,7 +2,7 @@ import { compose, withStateHandlers, lifecycle } from "recompose";
 import Timer from "./timer.component";
 
 // Using delta time because it's more accurate than incrementor. Source: https://stackoverflow.com/a/29972322
-const withTimerState = withStateHandlers(
+export const withTimerState = withStateHandlers(
   ({
     startTime = null, // Holds start time which will be used to compare delta time
     intervalId = null, // Reference to setInterval for clearing
@@ -13,11 +13,17 @@ const withTimerState = withStateHandlers(
     durationInMilliseconds
   }),
   {
-    startTimer: ({ durationInMilliseconds }) => () => {
-      const startTime = Date.now();
+    setDurationInMilliseconds: () => durationInMilliseconds => ({
+      durationInMilliseconds
+    }),
+    // Passing in callback to make it more flexible
+    startTimer: ({ durationInMilliseconds }) => ({
+      startTime,
+      onTimerCompleteCallback
+    }) => {
       const intervalId = setInterval(() => {
         if (Date.now() - startTime >= durationInMilliseconds) {
-          clearInterval(intervalId);
+          onTimerCompleteCallback();
         }
       }, 100); // 100ms to hopefully lessen time "jumps" due to setInterval stalls.
 
@@ -30,7 +36,8 @@ const withTimerState = withStateHandlers(
       clearInterval(intervalId);
 
       return {
-        startTime: null
+        startTime: null,
+        intervalId: null
       };
     }
   }
