@@ -1,7 +1,12 @@
 import { createSelector } from "reselect";
 import { selectApp } from "common/state/selectors";
 
-export const selectPlants = createSelector(
+export const selectPlantManager = createSelector(
   selectApp,
-  app => app.plants
+  app => app.plantsManager
+);
+
+export const selectPlants = createSelector(
+  selectPlantManager,
+  plantManager => plantManager.plants
 );

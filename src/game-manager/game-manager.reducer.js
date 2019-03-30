@@ -1,16 +1,15 @@
 import { INITIALIZE_GAME } from "./game-manager.action-types";
-import { makeMapleTree } from "./plant/plant.factory";
 
 export const initialState = {
-  plants: null
+  isReady: false
 };
 
 /**
- * Initialize game.
+ * Temp Initialize game.
  */
 const initializeGame = () => {
   return {
-    plants: [makeMapleTree(), makeMapleTree()]
+    isReady: true
   };
 };
 

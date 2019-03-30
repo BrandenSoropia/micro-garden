@@ -43,21 +43,7 @@ function updateProgress(amount) {
   this.setCurrentState(this.findCurrentState());
 }
 
-function findCurrentState() {
-  const progress = this.getProgress();
-  const thresholds = this.getThresholds();
-  const matureThreshold = thresholds[thresholds.length - 1];
-
-  if (progress === ABSOLUTE_SEED_STATE_PROGRESS) {
-    return getSeedState(thresholds);
-  } else if (progress >= matureThreshold.start) {
-    return matureThreshold;
-  }
-
-  // Find the highest threshold passed. Don't need to worry about any mature state thresholds' `end` property not being defined due to
-  // max threshold check above
-  return thresholds.find(({ start, end }) => inRange(progress, start, end));
-}
+function findCurrentState() {}
 
 /**
  * Properties:

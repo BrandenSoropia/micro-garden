@@ -4,13 +4,15 @@
 import React from "react";
 import { plantPropTypes } from "./plant.prop-types";
 
-const Plant = props => {
-  const { id, name, progress, currentState } = props;
-
+const Plant = ({ id, name, progress, currentState, incrementProgress }) => {
   return (
     <div
       onClick={() => {
-        console.log("prevPlant", props);
+        console.log("clicked!");
+        incrementProgress({
+          plantId: id,
+          amount: 1
+        });
       }}
     >
       <p>{`${name} #${id}`}</p>

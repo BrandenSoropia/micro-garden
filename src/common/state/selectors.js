@@ -1,4 +1,4 @@
 /**
  * Common useful selectors.
  */
-export const selectApp = state => state.app;
+export const selectApp = store => store;
