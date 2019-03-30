@@ -1,5 +1,5 @@
 import { INITIALIZE_GAME } from "./game-manager.action-types";
-import { MapleTree } from "./plant/plant.class";
+import { makeMapleTree } from "./plant/plant.factory";
 
 export const initialState = {
   plants: null
@@ -10,7 +10,7 @@ export const initialState = {
  */
 const initializeGame = () => {
   return {
-    plants: [new MapleTree(), new MapleTree()]
+    plants: [makeMapleTree(), makeMapleTree()]
   };
 };
 

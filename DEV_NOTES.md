@@ -4,10 +4,24 @@ Documenting progress, thoughts, lessons, shortcomings etc...
 
 ### March 30, 2019
 
-About removinf `recompose`:
+#### Don't Use `class`es please!
+
+So it turns out classes aren't serializable, thus if you're using them to manage state, React won't catch them updating! On top of that, it surfaced the issue of figuring out how to update Redux as well when plants progress! I found this out when my Plant's `onClick` would update the class instance's state, but React would not rerender with the new data.
+
+My idea of using `class`es was rooted in the hopes of being able to easily add new plant types in the future that would have the same data format and behaviour, thus making a hopefully seamless integration into the app. Now that this won't work out and after some digging, [I've found that factories are exactly what I'm looking for](https://stackoverflow.com/a/36330732)! They will provide the reusability I'll need as well as support React's state checking! And due to fleshing out updating the class, I can easily move the logic to Redux in a reducer and solve that problem at the same time!
+
+Even though the time and work on developing the class is going to the trash, it left useful insights and recyclable pieces to build a better solution!
+
+#### Above initial state and fetching data:
+
+I'd like to differentiate when there is no data at first versus receiving
+no data. For example, when the game initializes, I want the initial state to set `plants` as `null`, indicating the game hasn't fetched the game data yet. After fetching, I'll ideally know to send an empty array, string etc, to mark that a fetch has completed and the game has been "updated".
+
+#### About removing `recompose`:
+
 Hooks are a quicker, neater, more reusable and more easily testable.
 
-About PropTypes:
+#### About PropTypes:
 
 Decided to keep props bundled into objects instead of passing each piece of data individually. I think having component `propTypes` helps clear up what exactly is in these objects and declutters component code.
 

@@ -19,15 +19,7 @@ export const GameManager = ({ plants, initializeGame }) => {
   return (
     <div>
       {plants &&
-        plants.map(plant => (
-          <Plant
-            key={uniqueId("plant-")}
-            plant={plant}
-            onClick={name => {
-              console.log("### Hello, I'm ", name);
-            }}
-          />
-        ))}
+        plants.map(plant => <Plant key={uniqueId("plant-")} {...plant} />)}
     </div>
   );
 };

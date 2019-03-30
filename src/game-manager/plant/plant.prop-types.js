@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { STATUS } from "./plant.constants";
-import { Plant } from "./plant.class";
 
 export const plantStatePropTypes = PropTypes.shape({
   start: PropTypes.number,
@@ -10,4 +9,12 @@ export const plantStatePropTypes = PropTypes.shape({
   alt: PropTypes.string
 });
 
-export const plantPropTypes = PropTypes.instanceOf(Plant);
+export const plantPropTypes = PropTypes.shape({
+  id: PropTypes.string,
+  name: PropTypes.string,
+  thresholds: PropTypes.arrayOf(plantStatePropTypes),
+  type: PropTypes.string,
+  // Everything starts at 0
+  progress: PropTypes.number,
+  currentState: plantStatePropTypes
+});
