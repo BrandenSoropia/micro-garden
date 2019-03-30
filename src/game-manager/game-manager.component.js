@@ -2,14 +2,11 @@
  * Contains entire game. Handles data initialization, game management and what to display.
  */
 import React, { useEffect } from "react";
-import Plant from "./plant/plant.component";
-import { uniqueId } from "lodash";
 import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
 import { initializeGame } from "./game-manager.actions";
-import { selectPlants } from "./game-manager.selectors";
 import { plantPropTypes } from "./plant/plant.prop-types";
 import PropTypes from "prop-types";
+import PlantManager from "./plant-manager/plant-manager.component";
 
 export const GameManager = ({ plants, initializeGame }) => {
   useEffect(() => {
@@ -18,8 +15,7 @@ export const GameManager = ({ plants, initializeGame }) => {
 
   return (
     <div>
-      {plants &&
-        plants.map(plant => <Plant key={uniqueId("plant-")} {...plant} />)}
+      <PlantManager />
     </div>
   );
 };
@@ -33,9 +29,7 @@ GameManager.defaultProps = {
 };
 
 export default connect(
-  createStructuredSelector({
-    plants: selectPlants
-  }),
+  null,
   {
     initializeGame
   }

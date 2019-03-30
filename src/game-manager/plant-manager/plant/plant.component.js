@@ -1,7 +1,7 @@
 /**
  * Handles displaying plant information and interactions.
  */
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { plantPropTypes } from "./plant.prop-types";
 
 const Plant = props => {
