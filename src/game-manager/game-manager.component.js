@@ -1,21 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Plant from "./plant/plant.component";
 import { uniqueId } from "lodash";
-import Timer from "./timer/timer.container";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { initializeGame } from "./game-manager.actions";
+import { selectPlants } from "./game-manager.selectors";
+import PropTypes from "prop-types";
 
-const GameManager = ({ plants }) => (
-  <div>
-    <Timer />
-    {plants.map(plant => (
-      <Plant
-        key={uniqueId("plant-")}
-        name={plant.getName()}
-        status={plant.getCurrentStatus()}
-        sprite={plant.getCurrentSprite()}
-        alt={plant.getCurrentSpriteAlt()}
-      />
-    ))}
-  </div>
-);
+export const GameManager = ({ plants, initializeGame }) => {
+  const useInitializeGame = useEffect(() => {
+    initializeGame();
+  }, []);
 
-export default GameManager;
+  return (
+    <div>
+      {plants &&
+        plants.map(plant => (
+          <Plant
+            key={uniqueId("plant-")}
+            name={plant.getName()}
+            status={plant.getCurrentStatus()}
+            sprite={plant.getCurrentSprite()}
+            alt={plant.getCurrentSpriteAlt()}
+          />
+        ))}
+    </div>
+  );
+};
+
+GameManager.defaultProps = {
+  plants: null
+};
+
+export default connect(
+  createStructuredSelector({
+    plants: selectPlants
+  }),
+  {
+    initializeGame
+  }
+)(GameManager);
