@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { initializeGame } from "./game-manager.actions";
 import { selectPlants } from "./game-manager.selectors";
+import { plantPropTypes } from "./plant/plant.prop-types";
 import PropTypes from "prop-types";
 
 export const GameManager = ({ plants, initializeGame }) => {
@@ -26,6 +27,10 @@ export const GameManager = ({ plants, initializeGame }) => {
         ))}
     </div>
   );
+};
+
+GameManager.propTypes = {
+  plants: PropTypes.arrayOf(plantPropTypes)
 };
 
 GameManager.defaultProps = {

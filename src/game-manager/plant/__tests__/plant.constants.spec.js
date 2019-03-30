@@ -1,9 +1,6 @@
-import {
-  Plant,
-  ABSOLUTE_SEED_STATE_PROGRESS,
-  STATUS,
-  getSeedState
-} from "../plant.constants";
+import { Plant, getSeedState } from "../plant.class";
+
+import { STATUS, ABSOLUTE_SEED_STATE_PROGRESS } from "./plant.constants";
 
 const thresholds = [
   {
