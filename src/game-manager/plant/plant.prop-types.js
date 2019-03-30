@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { TREE, STATUS } from "./plant.constants";
+import { STATUS } from "./plant.constants";
 import { Plant } from "./plant.class";
 
 export const plantStatePropTypes = PropTypes.shape({

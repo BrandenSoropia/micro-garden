@@ -2,7 +2,7 @@ import { INITIALIZE_GAME } from "./game-manager.action-types";
 import { MapleTree } from "./plant/plant.class";
 
 export const initialState = {
-  plants: []
+  plants: null
 };
 
 /**

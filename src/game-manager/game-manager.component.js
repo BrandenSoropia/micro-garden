@@ -1,3 +1,6 @@
+/**
+ * Contains entire game. Handles data initialization, game management and what to display.
+ */
 import React, { useEffect } from "react";
 import Plant from "./plant/plant.component";
 import { uniqueId } from "lodash";
@@ -9,7 +12,7 @@ import { plantPropTypes } from "./plant/plant.prop-types";
 import PropTypes from "prop-types";
 
 export const GameManager = ({ plants, initializeGame }) => {
-  const useInitializeGame = useEffect(() => {
+  useEffect(() => {
     initializeGame();
   }, []);
 
@@ -19,10 +22,10 @@ export const GameManager = ({ plants, initializeGame }) => {
         plants.map(plant => (
           <Plant
             key={uniqueId("plant-")}
-            name={plant.getName()}
-            status={plant.getCurrentStatus()}
-            sprite={plant.getCurrentSprite()}
-            alt={plant.getCurrentSpriteAlt()}
+            plant={plant}
+            onClick={name => {
+              console.log("### Hello, I'm ", name);
+            }}
           />
         ))}
     </div>

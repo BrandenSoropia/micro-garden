@@ -2,6 +2,15 @@
 
 Documenting progress, thoughts, lessons, shortcomings etc...
 
+### March 30, 2019
+
+About removinf `recompose`:
+Hooks are a quicker, neater, more reusable and more easily testable.
+
+About PropTypes:
+
+Decided to keep props bundled into objects instead of passing each piece of data individually. I think having component `propTypes` helps clear up what exactly is in these objects and declutters component code.
+
 ### Feb 18, 2019
 
 **Note to self: Maybe write a better "lessons learned" post about classes!**
