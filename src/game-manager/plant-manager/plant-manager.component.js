@@ -4,9 +4,9 @@ import { createStructuredSelector } from "reselect";
 import Plant from "./plant/plant.component";
 import { selectPlants } from "./plant-manager.selectors";
 import { uniqueId } from "lodash";
-import { incrementProgress } from "./plant-manager.action-creators";
+import { incrementProgress as _incrementProgress } from "./plant-manager.action-creators";
 
-const PlantManager = ({ plants }) => {
+const PlantManager = ({ plants, incrementProgress }) => {
   return (
     plants &&
     plants.map(plant => (
@@ -24,6 +24,6 @@ export default connect(
     plants: selectPlants
   }),
   {
-    incrementProgress
+    incrementProgress: _incrementProgress
   }
 )(PlantManager);
