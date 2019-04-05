@@ -8,14 +8,25 @@ import { incrementProgress as _incrementProgress } from "./plant-manager.action-
 
 const PlantManager = ({ plants, incrementProgress }) => {
   return (
-    plants &&
-    plants.map(plant => (
-      <Plant
-        key={uniqueId("plant-")}
-        {...plant}
-        incrementProgress={incrementProgress}
-      />
-    ))
+    <>
+      {plants &&
+        plants.map(plant => (
+          <Plant
+            key={uniqueId("plant-")}
+            {...plant}
+            incrementProgress={incrementProgress}
+          />
+        ))}
+      <button
+        onClick={() =>
+          incrementProgress({
+            amount: 1
+          })
+        }
+      >
+        Increment All
+      </button>
+    </>
   );
 };
 

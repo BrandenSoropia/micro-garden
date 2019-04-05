@@ -4,7 +4,7 @@ import { ABSOLUTE_SEED_STATE_PROGRESS } from "./plant/plant.constants";
 import { inRange } from "lodash";
 
 const initialState = {
-  plants: [makeMapleTree()]
+  plants: [makeMapleTree(), makeMapleTree()]
 };
 
 const getUpdatedPlantState = ({ progress, thresholds }) => {
@@ -21,16 +21,39 @@ const getUpdatedPlantState = ({ progress, thresholds }) => {
   return thresholds.find(({ start, end }) => inRange(progress, start, end));
 };
 
-const applyProgressUpdate = (currentPlantsState, { plantId, amount }) => {
-  // Find and update plant's progress
-  const newPlantsState = [...currentPlantsState];
-  const plantToUpdateIdx = newPlantsState.findIndex(({ id }) => id === plantId);
-  newPlantsState[plantToUpdateIdx].progress += amount;
+/**
+ * Returns modified plant.
+ * @param {*} plant
+ * @param {*} amount
+ */
+const progressPlant = (plant, amount) => {
+  plant.progress += amount;
+  plant.currentState = getUpdatedPlantState(plant);
 
-  // Update current state if passes a threshold
-  newPlantsState[plantToUpdateIdx].currentState = getUpdatedPlantState(
-    newPlantsState[plantToUpdateIdx]
-  );
+  return plant;
+};
+
+const applyProgressUpdate = (currentPlantsState, { plantId, amount }) => {
+  let newPlantsState;
+
+  // Threat no plantId as update all.
+  if (!plantId) {
+    newPlantsState = currentPlantsState.map(plant =>
+      progressPlant(plant, amount)
+    );
+  } else {
+    // Find and update plant's progress
+    newPlantsState = [...currentPlantsState];
+    const plantToUpdateIdx = newPlantsState.findIndex(
+      ({ id }) => id === plantId
+    );
+    const updatedPlant = progressPlant(
+      newPlantsState[plantToUpdateIdx],
+      amount
+    );
+    newPlantsState[plantToUpdateIdx] = updatedPlant;
+  }
+
   return newPlantsState;
 };
 
