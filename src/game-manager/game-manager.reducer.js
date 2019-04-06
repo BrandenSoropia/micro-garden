@@ -1,4 +1,4 @@
-import { INITIALIZE_GAME } from "./game-manager.action-types";
+import { INITIALIZE_GAME } from './game-manager.action-types';
 
 export const initialState = {
   isReady: false

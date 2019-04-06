@@ -1,5 +1,5 @@
-import { createSelector } from "reselect";
-import { selectApp } from "common/state/selectors";
+import { createSelector } from 'reselect';
+import { selectApp } from 'common/state/selectors';
 
 export const selectPlantManager = createSelector(
   selectApp,

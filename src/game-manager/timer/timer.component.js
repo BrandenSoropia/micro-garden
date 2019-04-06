@@ -1,27 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   MINIMUM_DURATION_LIMIT_MINUTES,
   MAXIMUM_DURATION_LIMIT_MINUTES
-} from "./duration-presets.constants";
+} from './duration-presets.constants';
 
 /**
  * Convert milliseconds to minutes including up to 2 decimal places.
  */
-const millisecondsToMinutes = milliseconds =>
-  Math.round((milliseconds * 100) / 60000) / 100;
+const millisecondsToMinutes = milliseconds => Math.round((milliseconds * 100) / 60000) / 100;
 
 /**
  * Convert milliseconds to minutes including up to 2 decimal places.
  */
 const minutesToMilliseconds = minutes => minutes * 60000;
 
-const Timer = ({
-  startTimer,
-  durationInMilliseconds,
-  clearTimer,
-  setDurationInMilliseconds
-}) => (
+const Timer = ({ startTimer, durationInMilliseconds, clearTimer, setDurationInMilliseconds }) => (
   <div>
     <p>{`Duration: ${millisecondsToMinutes(durationInMilliseconds)} mins`}</p>
     <label htmlFor="duration-in-minutes">Duration:</label>
@@ -34,9 +28,7 @@ const Timer = ({
         e.preventDefault();
         e.stopPropagation();
 
-        setDurationInMilliseconds(
-          minutesToMilliseconds(parseInt(e.target.value))
-        );
+        setDurationInMilliseconds(minutesToMilliseconds(parseInt(e.target.value)));
       }}
     />
     <button

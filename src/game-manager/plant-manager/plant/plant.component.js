@@ -1,14 +1,14 @@
 /**
  * Handles displaying plant information and interactions.
  */
-import React from "react";
-import { plantPropTypes } from "./plant.prop-types";
+import React from 'react';
+import { plantPropTypes } from './plant.prop-types';
 
 const Plant = ({ id, name, progress, currentState, incrementProgress }) => {
   return (
     <div
       onClick={() => {
-        console.log("clicked!");
+        console.log('clicked!');
         incrementProgress({
           plantId: id,
           amount: 1

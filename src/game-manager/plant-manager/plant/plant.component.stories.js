@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import { storiesOf } from "@storybook/react";
+import { storiesOf } from '@storybook/react';
 
-import Plant from "./plant.component";
-import SpriteMapleMature from "./assets/maple-mature.png";
+import Plant from './plant.component';
+import SpriteMapleMature from './assets/maple-mature.png';
 
-storiesOf("Plant", module).add("with plant details", () => (
+storiesOf('Plant', module).add('with plant details', () => (
   <Plant
     type="TREE"
     name="Maple Tree"

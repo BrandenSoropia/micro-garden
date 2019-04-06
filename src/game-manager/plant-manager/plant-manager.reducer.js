@@ -1,7 +1,7 @@
-import { INCREMENT_PROGRESS } from "./plant-manager.action-types";
-import { makeMapleTree, getSeedState } from "./plant/plant.factory";
-import { ABSOLUTE_SEED_STATE_PROGRESS } from "./plant/plant.constants";
-import { inRange } from "lodash";
+import { inRange } from 'lodash';
+import { INCREMENT_PROGRESS } from './plant-manager.action-types';
+import { makeMapleTree, getSeedState } from './plant/plant.factory';
+import { ABSOLUTE_SEED_STATE_PROGRESS } from './plant/plant.constants';
 
 const initialState = {
   plants: [makeMapleTree(), makeMapleTree()]
@@ -12,7 +12,8 @@ const getUpdatedPlantState = ({ progress, thresholds }) => {
 
   if (progress === ABSOLUTE_SEED_STATE_PROGRESS) {
     return getSeedState(thresholds);
-  } else if (progress >= matureThreshold.start) {
+  }
+  if (progress >= matureThreshold.start) {
     return matureThreshold;
   }
 
@@ -38,19 +39,12 @@ const applyProgressUpdate = (currentPlantsState, { plantId, amount }) => {
 
   // Threat no plantId as update all.
   if (!plantId) {
-    newPlantsState = currentPlantsState.map(plant =>
-      progressPlant(plant, amount)
-    );
+    newPlantsState = currentPlantsState.map(plant => progressPlant(plant, amount));
   } else {
     // Find and update plant's progress
     newPlantsState = [...currentPlantsState];
-    const plantToUpdateIdx = newPlantsState.findIndex(
-      ({ id }) => id === plantId
-    );
-    const updatedPlant = progressPlant(
-      newPlantsState[plantToUpdateIdx],
-      amount
-    );
+    const plantToUpdateIdx = newPlantsState.findIndex(({ id }) => id === plantId);
+    const updatedPlant = progressPlant(newPlantsState[plantToUpdateIdx], amount);
     newPlantsState[plantToUpdateIdx] = updatedPlant;
   }
 

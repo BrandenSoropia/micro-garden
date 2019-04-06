@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import { STATUS } from "./plant.constants";
+import PropTypes from 'prop-types';
+import { STATUS } from './plant.constants';
 
 export const plantStatePropTypes = PropTypes.shape({
   start: PropTypes.number,

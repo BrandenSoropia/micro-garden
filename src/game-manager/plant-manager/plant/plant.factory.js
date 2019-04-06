@@ -2,31 +2,25 @@
  * Source of truth for all plants available in game. All plant game data should come from this
  * file.
  */
-import { inRange } from "lodash";
+import { inRange } from 'lodash';
 // Sprites
-import SpriteSeed from "./assets/seed.png";
-import SpriteMapleSprout from "./assets/maple-sprout.png";
-import SpriteMapleSapling from "./assets/maple-sapling.png";
-import SpriteMapleMature from "./assets/maple-mature.png";
-import {
-  STATUS,
-  TREE,
-  MAPLE_TREE,
-  ABSOLUTE_SEED_STATE_PROGRESS
-} from "./plant.constants";
-import { uniqueId } from "lodash";
+import { uniqueId } from 'lodash';
+import SpriteSeed from './assets/seed.png';
+import SpriteMapleSprout from './assets/maple-sprout.png';
+import SpriteMapleSapling from './assets/maple-sapling.png';
+import SpriteMapleMature from './assets/maple-mature.png';
+import { STATUS, TREE, MAPLE_TREE, ABSOLUTE_SEED_STATE_PROGRESS } from './plant.constants';
 
 // In case thresholds array are not in particular order...
-export const getSeedState = thresholds =>
-  thresholds.find(({ status }) => status === STATUS.SEED);
+export const getSeedState = thresholds => thresholds.find(({ status }) => status === STATUS.SEED);
 
 export const makePlant = plantProperties => {
   const { name, thresholds, type } = plantProperties;
   return {
-    id: uniqueId("plant-"), // Used to help find specific plants instances
-    name: name,
-    thresholds: thresholds,
-    type: type,
+    id: uniqueId('plant-'), // Used to help find specific plants instances
+    name,
+    thresholds,
+    type,
     // Everything starts at 0 and in seed state
     progress: 0,
     currentState: getSeedState(thresholds)
@@ -66,29 +60,28 @@ export const makeMapleTree = () => {
         end: 1,
         status: STATUS.SEED,
         sprite: SpriteSeed,
-        alt: "A brown, oval shaped seed."
+        alt: 'A brown, oval shaped seed.'
       },
       {
         start: 1,
         end: 2,
         status: STATUS.SPROUT,
         sprite: SpriteMapleSprout,
-        alt: "A sparse burst of green is starting to top your little sprout."
+        alt: 'A sparse burst of green is starting to top your little sprout.'
       },
       {
         start: 2,
         end: 3,
         status: STATUS.SAPLING,
         sprite: SpriteMapleSapling,
-        alt:
-          "Supported by a thin, but sturdy trunk, a full head of green leaves rests."
+        alt: 'Supported by a thin, but sturdy trunk, a full head of green leaves rests.'
       },
       {
         start: 3,
         status: STATUS.MATURE,
         sprite: SpriteMapleMature,
         alt:
-          "A thick trunk shoulders a dense collection of bright green leaves so thick, light barely passes through."
+          'A thick trunk shoulders a dense collection of bright green leaves so thick, light barely passes through.'
       }
     ]
   });

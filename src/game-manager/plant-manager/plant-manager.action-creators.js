@@ -1,4 +1,4 @@
-import { INCREMENT_PROGRESS } from "./plant-manager.action-types";
+import { INCREMENT_PROGRESS } from './plant-manager.action-types';
 
 /**
  * Increment plant with matching plantId by the amount given.

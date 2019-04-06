@@ -1,5 +1,5 @@
-import { compose, withStateHandlers, lifecycle } from "recompose";
-import Timer from "./timer.component";
+import { compose, withStateHandlers, lifecycle } from 'recompose';
+import Timer from './timer.component';
 
 // Using delta time because it's more accurate than incrementor. Source: https://stackoverflow.com/a/29972322
 export const withTimerState = withStateHandlers(
@@ -17,10 +17,7 @@ export const withTimerState = withStateHandlers(
       durationInMilliseconds
     }),
     // Passing in callback to make it more flexible
-    startTimer: ({ durationInMilliseconds }) => ({
-      startTime,
-      onTimerCompleteCallback
-    }) => {
+    startTimer: ({ durationInMilliseconds }) => ({ startTime, onTimerCompleteCallback }) => {
       const intervalId = setInterval(() => {
         if (Date.now() - startTime >= durationInMilliseconds) {
           onTimerCompleteCallback();
