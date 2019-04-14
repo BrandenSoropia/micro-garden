@@ -2,7 +2,6 @@
  * Source of truth for all plants available in game. All plant game data should come from this
  * file.
  */
-import { inRange } from 'lodash';
 // Sprites
 import { uniqueId } from 'lodash';
 import SpriteSeed from './assets/seed.png';
