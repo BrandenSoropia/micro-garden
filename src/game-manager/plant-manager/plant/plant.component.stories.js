@@ -9,7 +9,7 @@ const Container = styled.div`
   width: 100px;
 `;
 
-storiesOf('Plant', module).add('with plant details', () => (
+storiesOf('Plant Manager/Plant', module).add('with plant details', () => (
   <Container>
     <Plant
       sprite={SpriteMapleMature}

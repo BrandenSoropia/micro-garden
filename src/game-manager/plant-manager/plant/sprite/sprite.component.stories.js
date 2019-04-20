@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import Sprite from './sprite.component';
 import SpriteMapleMature from '../assets/maple-mature.png';
 
-storiesOf('Sprite', module)
+storiesOf('Plant Manager/Plant/Sprite', module)
   .add('Renders with given dimensions and units', () => (
     <Sprite url={SpriteMapleMature} width="150px" height="150px" alt="test" />
   ))
