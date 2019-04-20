@@ -4,11 +4,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { initializeGame } from './game-manager.actions';
-import { plantPropTypes } from './plant-manager/plant/plant.prop-types';
-import PlantManager from './plant-manager/plant-manager.component';
+import { initializeGame as _initializeGame } from './game-manager.actions';
+import PlantManager from './plant-manager/plant-manager.container';
 
-export const GameManager = ({ plants, initializeGame }) => {
+export const GameManager = ({ initializeGame }) => {
   useEffect(() => {
     initializeGame();
   }, []);
@@ -21,16 +20,12 @@ export const GameManager = ({ plants, initializeGame }) => {
 };
 
 GameManager.propTypes = {
-  plants: PropTypes.arrayOf(plantPropTypes)
-};
-
-GameManager.defaultProps = {
-  plants: null
+  initializeGame: PropTypes.func.isRequired
 };
 
 export default connect(
   null,
   {
-    initializeGame
+    initializeGame: _initializeGame
   }
 )(GameManager);

@@ -10,7 +10,7 @@ const StyledPlant = styled(Plant)`
 `;
 
 const PlantManager = ({ plants, incrementProgress }) => {
-  return (
+  return plants ? (
     <>
       {plants &&
         plants.map(plant => (
@@ -31,7 +31,7 @@ const PlantManager = ({ plants, incrementProgress }) => {
         Increment All
       </button>
     </>
-  );
+  ) : null;
 };
 
 PlantManager.propTypes = {
