@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import styled from 'styled-components/macro';
+import base from 'paths.macro';
 import Plant from './plant.component';
 import SpriteMapleMature from './assets/maple-mature.png';
 
@@ -9,7 +10,7 @@ const Container = styled.div`
   width: 100px;
 `;
 
-storiesOf('Plant Manager/Plant', module).add('with plant details', () => (
+storiesOf(`${base}/Plant`, module).add('with plant details', () => (
   <Container>
     <Plant
       sprite={SpriteMapleMature}

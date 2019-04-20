@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { useInterval } from 'common/hooks/use-interval.hook';
+import base from 'paths.macro';
 import TimeDisplay from './time-display.component';
 
 const MockTimer = () => {
@@ -15,7 +16,7 @@ const MockTimer = () => {
   );
 };
 
-storiesOf('Timer/Time Display', module)
+storiesOf(`${base}/Time Display`, module)
   .add('changes over time', () => <MockTimer />)
   .add('with single digit seconds only', () => (
     <TimeDisplay currentDurationInSeconds={51} intervalDurationInSeconds={60} />

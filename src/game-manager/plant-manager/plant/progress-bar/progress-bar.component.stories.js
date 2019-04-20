@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { storiesOf } from '@storybook/react';
 import { useInterval } from 'common/hooks/use-interval.hook';
+import base from 'paths.macro';
 import ProgressBar from './progress-bar.component';
 
 /**
@@ -40,7 +41,7 @@ const LoopedIncrementingProgressBar = () => {
   );
 };
 
-storiesOf('Plant Manager/Plant/Progress Bar', module)
+storiesOf(`${base}/Progress Bar`, module)
   .add('Zero state', () => <ProgressBar currentValue={0} maxValue={100} />)
   .add('Non-zero state', () => <ProgressBar currentValue={75} maxValue={100} />)
   .add('Full state', () => <ProgressBar currentValue={100} maxValue={100} />)
