@@ -3,7 +3,7 @@
  * file.
  */
 // Sprites
-import { uniqueId } from 'lodash';
+import { uniqueId, inRange } from 'lodash';
 import SpriteSeed from './assets/seed.png';
 import SpriteMapleSprout from './assets/maple-sprout.png';
 import SpriteMapleSapling from './assets/maple-sapling.png';
@@ -13,17 +13,67 @@ import { STATUS, TREE, MAPLE_TREE, ABSOLUTE_SEED_STATE_PROGRESS } from './plant.
 // In case thresholds array are not in particular order...
 export const getSeedState = thresholds => thresholds.find(({ status }) => status === STATUS.SEED);
 
+export const getCurrentPlantState = ({ progress, thresholds }) => {
+  const matureThreshold = thresholds[thresholds.length - 1];
+
+  if (progress === ABSOLUTE_SEED_STATE_PROGRESS) {
+    return getSeedState(thresholds);
+  }
+  if (progress >= matureThreshold.start) {
+    return matureThreshold;
+  }
+
+  // Find the highest threshold passed. Don't need to worry about any mature state thresholds' `end` property not being defined due to
+  // max threshold check above
+  return thresholds.find(({ start, end }) => inRange(progress, start, end));
+};
+
 export const makePlant = plantProperties => {
-  const { name, thresholds, type } = plantProperties;
+  const { id = uniqueId('plant-'), name, thresholds, type, progress = 0 } = plantProperties;
   return {
-    id: uniqueId('plant-'), // Used to help find specific plants instances
+    id, // Used to help find specific plants instances
     name,
     thresholds,
     type,
     // Everything starts at 0 and in seed state
-    progress: 0,
-    currentState: getSeedState(thresholds)
+    progress,
+    currentState:
+      progress === ABSOLUTE_SEED_STATE_PROGRESS
+        ? getSeedState(thresholds)
+        : getCurrentPlantState({ progress, thresholds })
   };
+};
+
+export const mapleSeedState = {
+  start: ABSOLUTE_SEED_STATE_PROGRESS,
+  end: 1,
+  status: STATUS.SEED,
+  sprite: SpriteSeed,
+  alt: 'A brown, oval shaped seed.'
+};
+
+export const mapleSproutState = {
+  start: 1,
+  end: 2,
+  status: STATUS.SPROUT,
+  sprite: SpriteMapleSprout,
+  alt: 'A sparse burst of green is starting to top your little sprout.'
+};
+
+export const mapleSaplingState = {
+  start: 2,
+  end: 3,
+  status: STATUS.SAPLING,
+  sprite: SpriteMapleSapling,
+  alt: 'Supported by a thin, but sturdy trunk, a full head of green leaves rests.'
+};
+
+export const mapleMatureState = {
+  start: 3,
+  status: STATUS.MATURE,
+  sprite: SpriteMapleMature,
+  alt:
+    'A thick trunk shoulders a dense collection of bright green leaves so thick, light barely passes through.'
 };
 
 /**
@@ -41,35 +91,6 @@ export const makeMapleTree = () => {
     type: TREE,
     name: MAPLE_TREE,
     // Ideally in order of increasing maturity for sanity's sake
-    thresholds: [
-      {
-        start: ABSOLUTE_SEED_STATE_PROGRESS,
-        end: 1,
-        status: STATUS.SEED,
-        sprite: SpriteSeed,
-        alt: 'A brown, oval shaped seed.'
-      },
-      {
-        start: 1,
-        end: 2,
-        status: STATUS.SPROUT,
-        sprite: SpriteMapleSprout,
-        alt: 'A sparse burst of green is starting to top your little sprout.'
-      },
-      {
-        start: 2,
-        end: 3,
-        status: STATUS.SAPLING,
-        sprite: SpriteMapleSapling,
-        alt: 'Supported by a thin, but sturdy trunk, a full head of green leaves rests.'
-      },
-      {
-        start: 3,
-        status: STATUS.MATURE,
-        sprite: SpriteMapleMature,
-        alt:
-          'A thick trunk shoulders a dense collection of bright green leaves so thick, light barely passes through.'
-      }
-    ]
+    thresholds: [mapleSeedState, mapleSproutState, mapleSaplingState, mapleMatureState]
   });
 };
