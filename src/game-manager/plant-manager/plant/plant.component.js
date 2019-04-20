@@ -22,7 +22,7 @@ const Plant = ({ sprite, progress, end: thresholdEnd, alt, onClick, ...rest }) =
   return (
     <CenteredContainer {...rest} onClick={onClick}>
       <PaddedSprite url={sprite} alt={alt} progressPercentage />
-      <ProgressBar currentValue={progress} maxValue={thresholdEnd} />
+      {thresholdEnd && <ProgressBar currentValue={progress} maxValue={thresholdEnd} />}
     </CenteredContainer>
   );
 };
@@ -30,9 +30,13 @@ const Plant = ({ sprite, progress, end: thresholdEnd, alt, onClick, ...rest }) =
 Plant.propTypes = {
   sprite: PropTypes.string.isRequired,
   progress: PropTypes.number.isRequired,
-  end: PropTypes.number.isRequired,
+  end: PropTypes.number, // Once plant is at max maturity, end does not exist
   alt: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired
+};
+
+Plant.defaultProps = {
+  end: null
 };
 
 export default Plant;

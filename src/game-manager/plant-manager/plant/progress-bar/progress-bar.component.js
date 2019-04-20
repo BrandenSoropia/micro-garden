@@ -22,15 +22,16 @@ const Container = styled.div`
   }
 `;
 
-const ProgressBar = ({ currentValue, maxValue, isFinalState, ...rest }) => {
+/**
+ * Note: If maxValue is not given, then plant has reached maximum maturity.
+ */
+const ProgressBar = ({ currentValue, maxValue, ...rest }) => {
   const progressPercentage = Math.floor((currentValue / maxValue) * 100);
   return (
     <Container
       {...rest}
-      progressPercentage={isFinalState ? 100 : progressPercentage}
-      aria-label={`Current growth stage progress: ${
-        isFinalState ? 'maxed' : `${progressPercentage}%`
-      }`}
+      progressPercentage={progressPercentage}
+      aria-label={`Current growth stage progress: ${progressPercentage}%`}
     />
   );
 };
