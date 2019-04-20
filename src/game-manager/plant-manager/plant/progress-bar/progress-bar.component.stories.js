@@ -1,19 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { storiesOf } from '@storybook/react';
+import { useInterval } from 'common/hooks/use-interval.hook';
 import ProgressBar from './progress-bar.component';
-
-const useInterval = (state, setter, duration) => {
-  useEffect(() => {
-    console.log('Doing something!');
-    const id = setInterval(() => {
-      setter(state + 10);
-    }, duration);
-
-    return () => {
-      clearInterval(id);
-    };
-  }, [state]);
-};
 
 /**
  * Kind of fun, keeping.
@@ -23,7 +11,7 @@ const InfiniteIncrementingProgressBar = () => {
   const [progress, setProgress] = useState(0);
 
   // Increment progress every 1 second
-  useInterval(progress, setProgress, 1000);
+  useInterval(progress, () => setProgress(progress + 10), 1000);
 
   return (
     <div>
@@ -37,7 +25,7 @@ const LoopedIncrementingProgressBar = () => {
   const [progress, setProgress] = useState(0);
 
   // Increment progress every 1 second
-  useInterval(progress, setProgress, 1000);
+  useInterval(progress, () => setProgress(progress + 10), 1000);
 
   useEffect(() => {
     if (progress > max) {
