@@ -22,20 +22,27 @@ const Container = styled.div`
   }
 `;
 
-const ProgressBar = ({ currentValue, maxValue, ...rest }) => {
+const ProgressBar = ({ currentValue, maxValue, isFinalState, ...rest }) => {
   const progressPercentage = Math.floor((currentValue / maxValue) * 100);
   return (
     <Container
       {...rest}
-      progressPercentage={progressPercentage}
-      aria-label={`Current growth stage progress: ${progressPercentage}%`}
+      progressPercentage={isFinalState ? 100 : progressPercentage}
+      aria-label={`Current growth stage progress: ${
+        isFinalState ? 'maxed' : `${progressPercentage}%`
+      }`}
     />
   );
 };
 
 ProgressBar.propTypes = {
   currentValue: PropTypes.number.isRequired,
-  maxValue: PropTypes.number.isRequired
+  maxValue: PropTypes.number.isRequired,
+  isFinalState: PropTypes.bool
+};
+
+ProgressBar.defaultProps = {
+  isFinalState: false
 };
 
 export default ProgressBar;
