@@ -23,6 +23,12 @@ export const progressPlant = (plant, amount) => {
   return plant;
 };
 
+/**
+ *
+ * @param {[object]} currentPlantsState: copy of current plant state
+ * @param {string} plantId: optional, target plant to update. If not given, update all plants.
+ * @param {int} amount: amount to update progress by
+ */
 export const applyProgressUpdate = (currentPlantsState, { plantId, amount }) => {
   let newPlantsState;
 

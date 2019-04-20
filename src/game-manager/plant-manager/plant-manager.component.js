@@ -1,10 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 import { uniqueId } from 'lodash';
 import Plant from './plant/plant.component';
-import { selectPlants } from './plant-manager.selectors';
-import { incrementProgress as _incrementProgress } from './plant-manager.action-creators';
 
 const PlantManager = ({ plants, incrementProgress }) => {
   return (
@@ -27,11 +23,4 @@ const PlantManager = ({ plants, incrementProgress }) => {
   );
 };
 
-export default connect(
-  createStructuredSelector({
-    plants: selectPlants
-  }),
-  {
-    incrementProgress: _incrementProgress
-  }
-)(PlantManager);
+export default PlantManager;

@@ -18,19 +18,19 @@ const PaddedSprite = styled(Sprite)`
   padding-bottom: 8px;
 `;
 
-const Plant = ({ sprite, currentProgress, thresholdEnd, alt, onClick }) => {
+const Plant = ({ sprite, progress, end: thresholdEnd, alt, onClick }) => {
   return (
     <CenteredContainer onClick={onClick}>
       <PaddedSprite url={sprite} alt={alt} progressPercentage />
-      <ProgressBar currentValue={currentProgress} maxValue={thresholdEnd} />
+      <ProgressBar currentValue={progress} maxValue={thresholdEnd} />
     </CenteredContainer>
   );
 };
 
 Plant.propTypes = {
   sprite: PropTypes.string.isRequired,
-  currentProgress: PropTypes.number.isRequired,
-  thresholdEnd: PropTypes.number.isRequired,
+  progress: PropTypes.number.isRequired,
+  end: PropTypes.number.isRequired,
   alt: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired
 };

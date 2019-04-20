@@ -6,7 +6,16 @@ export const selectPlantManager = createSelector(
   app => app.plantManager
 );
 
+/**
+ * Select plant state and only return necessary data.
+ */
 export const selectPlants = createSelector(
   selectPlantManager,
-  plantManager => plantManager.plants
+  plantManager =>
+    plantManager.plants.map(({ name, progress, type, currentState }) => ({
+      name,
+      progress,
+      type,
+      ...currentState
+    }))
 );
