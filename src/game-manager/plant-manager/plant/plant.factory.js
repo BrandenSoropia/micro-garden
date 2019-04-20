@@ -26,18 +26,6 @@ export const makePlant = plantProperties => {
   };
 };
 
-// TODO: Change below 2 functions to update redux state
-/**
- * Given a +/- number, add to current progress and update current plant state.
- * @param {*} amount: positive or negative number to be applied to current progress
- */
-function updateProgress(amount) {
-  this.setProgress(this.getProgress() + amount);
-  this.setCurrentState(this.findCurrentState());
-}
-
-function findCurrentState() {}
-
 /**
  * Properties:
  * name: Text to be displayed

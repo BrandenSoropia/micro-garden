@@ -11,6 +11,12 @@ const Container = styled.div`
 
 storiesOf('Plant', module).add('with plant details', () => (
   <Container>
-    <Plant sprite={SpriteMapleMature} currentProgress={75} thresholdEnd={100} alt="test" />
+    <Plant
+      sprite={SpriteMapleMature}
+      currentProgress={75}
+      thresholdEnd={100}
+      alt="test"
+      onClick={() => console.log('Hello')}
+    />
   </Container>
 ));

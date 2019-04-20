@@ -3,7 +3,7 @@ import { selectApp } from 'common/state/selectors';
 
 export const selectPlantManager = createSelector(
   selectApp,
-  app => app.plantsManager
+  app => app.plantManager
 );
 
 export const selectPlants = createSelector(

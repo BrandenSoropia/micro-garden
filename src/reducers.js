@@ -4,6 +4,6 @@ import { plantManagerReducer } from './game-manager/plant-manager/plant-manager.
 
 const rootReducer = combineReducers({
   game: GameManagerReducer,
-  plantsManager: plantManagerReducer
+  plantManager: plantManagerReducer
 });
 export default rootReducer;

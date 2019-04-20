@@ -7,7 +7,7 @@ const initialState = {
   plants: [makeMapleTree(), makeMapleTree()]
 };
 
-const getUpdatedPlantState = ({ progress, thresholds }) => {
+const getCurrentPlantState = ({ progress, thresholds }) => {
   const matureThreshold = thresholds[thresholds.length - 1];
 
   if (progress === ABSOLUTE_SEED_STATE_PROGRESS) {
@@ -29,7 +29,7 @@ const getUpdatedPlantState = ({ progress, thresholds }) => {
  */
 const progressPlant = (plant, amount) => {
   plant.progress += amount;
-  plant.currentState = getUpdatedPlantState(plant);
+  plant.currentState = getCurrentPlantState(plant);
 
   return plant;
 };
@@ -37,7 +37,7 @@ const progressPlant = (plant, amount) => {
 const applyProgressUpdate = (currentPlantsState, { plantId, amount }) => {
   let newPlantsState;
 
-  // Threat no plantId as update all.
+  // Treat no plantId as update all.
   if (!plantId) {
     newPlantsState = currentPlantsState.map(plant => progressPlant(plant, amount));
   } else {

@@ -14,6 +14,7 @@ const PlantManager = ({ plants, incrementProgress }) => {
           <Plant key={uniqueId('plant-')} {...plant} incrementProgress={incrementProgress} />
         ))}
       <button
+        type="button"
         onClick={() =>
           incrementProgress({
             amount: 1
