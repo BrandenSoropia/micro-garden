@@ -18,9 +18,9 @@ const PaddedSprite = styled(Sprite)`
   padding-bottom: 8px;
 `;
 
-const Plant = ({ sprite, progress, end: thresholdEnd, alt, onClick }) => {
+const Plant = ({ sprite, progress, end: thresholdEnd, alt, onClick, ...rest }) => {
   return (
-    <CenteredContainer onClick={onClick}>
+    <CenteredContainer {...rest} onClick={onClick}>
       <PaddedSprite url={sprite} alt={alt} progressPercentage />
       <ProgressBar currentValue={progress} maxValue={thresholdEnd} />
     </CenteredContainer>

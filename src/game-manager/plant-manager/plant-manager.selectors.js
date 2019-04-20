@@ -12,10 +12,11 @@ export const selectPlantManager = createSelector(
 export const selectPlants = createSelector(
   selectPlantManager,
   plantManager =>
-    plantManager.plants.map(({ name, progress, type, currentState }) => ({
+    plantManager.plants.map(({ id, name, progress, type, currentState }) => ({
       name,
       progress,
       type,
+      id,
       ...currentState
     }))
 );

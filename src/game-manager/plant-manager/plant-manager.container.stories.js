@@ -6,7 +6,7 @@ import PlantManager from './plant-manager.container';
 import rootReducer from '../../reducers';
 import { makeMapleTree } from './plant/plant.factory';
 
-const store = createStore(
+const singlePlantStore = createStore(
   rootReducer,
   {
     plantManager: {
@@ -16,8 +16,24 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-storiesOf('Plant Manager', module).add('with plants', () => (
-  <Provider store={store}>
-    <PlantManager />
-  </Provider>
-));
+const multiplePlantStore = createStore(
+  rootReducer,
+  {
+    plantManager: {
+      plants: [makeMapleTree(), makeMapleTree(), makeMapleTree()]
+    }
+  },
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+storiesOf('Plant Manager', module)
+  .add('with a single plant', () => (
+    <Provider store={singlePlantStore}>
+      <PlantManager />
+    </Provider>
+  ))
+  .add('with multiple plants', () => (
+    <Provider store={multiplePlantStore}>
+      <PlantManager />
+    </Provider>
+  ));
