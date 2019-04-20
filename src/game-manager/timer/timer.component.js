@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useInterval } from 'common/hooks/use-interval.hook';
 
 const Timer = () => {
-  const [duration, setDuration] = useState(0);
-
-  useEffect(() => {});
+  const [durationInSeconds, setDurationInSeconds] = useState(0);
+  useInterval(durationInSeconds, () => setDurationInSeconds(durationInSeconds + 1), 1000);
 
   return (
     <div>
-      <p>{}</p>
+      <p>{durationInSeconds}</p>
     </div>
   );
 };
+
+export default Timer;
