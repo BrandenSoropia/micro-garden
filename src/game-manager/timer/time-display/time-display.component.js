@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 const TimeDisplay = ({ currentDurationInSeconds, intervalDurationInSeconds }) => {
   const secondsRemaining = intervalDurationInSeconds - currentDurationInSeconds;
 
-  // Append empty string since it's fastest conversion according to https://stackoverflow.com/a/5765401
+  // Append empty string since it's fastest int to string conversion according to https://stackoverflow.com/a/5765401
   // eslint-disable-next-line prefer-template
   const displayInDoubleDigits = number => (number < 10 ? `0${number}` : number + '');
   const getMinutes = timeInSeconds => Math.floor(timeInSeconds / 60);

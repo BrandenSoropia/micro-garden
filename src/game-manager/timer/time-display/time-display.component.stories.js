@@ -15,7 +15,7 @@ const MockTimer = () => {
   );
 };
 
-storiesOf('Time Display', module)
+storiesOf('Timer/Time Display', module)
   .add('changes over time', () => <MockTimer />)
   .add('with single digit seconds only', () => (
     <TimeDisplay currentDurationInSeconds={51} intervalDurationInSeconds={60} />
