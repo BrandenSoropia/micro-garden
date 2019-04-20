@@ -6,11 +6,18 @@ const initialState = {
 };
 /**
  * Returns modified plant.
+ *
+ * Note: Plant already comes from a copied state, thus disabled no-param-reassign linter.
  * @param {*} plant
  * @param {*} amount
  */
 export const progressPlant = (plant, amount) => {
+  // Don't update passed max state
+  if (!plant.currentState.end) return plant;
+
+  // eslint-disable-next-line no-param-reassign
   plant.progress += amount;
+  // eslint-disable-next-line no-param-reassign
   plant.currentState = getCurrentPlantState(plant);
 
   return plant;

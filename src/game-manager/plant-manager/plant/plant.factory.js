@@ -35,7 +35,6 @@ export const makePlant = plantProperties => {
     name,
     thresholds,
     type,
-    // Everything starts at 0 and in seed state
     progress,
     currentState:
       progress === ABSOLUTE_SEED_STATE_PROGRESS
@@ -86,8 +85,10 @@ export const mapleMatureState = {
  *   sprite: path to image. Imported from asset's index file
  *
  */
-export const makeMapleTree = () => {
+export const makeMapleTree = ({ id, progress } = {}) => {
   return makePlant({
+    id,
+    progress,
     type: TREE,
     name: MAPLE_TREE,
     // Ideally in order of increasing maturity for sanity's sake
