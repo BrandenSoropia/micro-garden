@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import base from 'paths.macro';
 import Sprite from './sprite.component';
-import SpriteMapleMature from '../assets/maple-mature.png';
+import SpriteMapleMature from '../../assets/maple-mature.png';
 
 storiesOf(`${base}/Sprite`, module)
   .add('Renders with given dimensions and units', () => (

@@ -9,6 +9,10 @@ const StyledPlant = styled(Plant)`
   width: 100px;
 `;
 
+/**
+ * Handles display of plants as well as updating plants.
+ * @param {*} param0
+ */
 const PlantManager = ({ plants, incrementProgress }) => {
   return plants ? (
     <>

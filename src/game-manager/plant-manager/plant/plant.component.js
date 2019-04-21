@@ -4,8 +4,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
+import Sprite from 'common/components/sprite/sprite.component';
 import ProgressBar from './progress-bar/progress-bar.component';
-import Sprite from './sprite/sprite.component';
 
 const CenteredContainer = styled.div`
   align-items: center;
