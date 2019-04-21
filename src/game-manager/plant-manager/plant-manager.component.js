@@ -21,7 +21,7 @@ const PlantManager = ({ plants, incrementProgress }) => {
           <StyledPlant
             key={uniqueId('plant-')}
             {...plant}
-            onClick={() => incrementProgress({ plantId: plant.id, amount: 1 })}
+            onEvent={() => incrementProgress({ plantId: plant.id, amount: 1 })}
           />
         ))}
       <button

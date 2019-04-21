@@ -17,7 +17,7 @@ storiesOf(`${base}/Plant`, module).add('with plant details', () => (
       currentProgress={75}
       thresholdEnd={100}
       alt="test"
-      onClick={() => console.log('Hello')}
+      onEvent={() => console.log('Hello')}
     />
   </Container>
 ));

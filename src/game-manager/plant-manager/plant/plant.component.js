@@ -15,12 +15,25 @@ const CenteredContainer = styled.div`
 `;
 
 const PaddedSprite = styled(Sprite)`
-  padding-bottom: 8px;
+  ${({ end }) => end && 'padding-bottom: 8px;'};
 `;
 
-const Plant = ({ sprite, progress, end: thresholdEnd, alt, onClick, ...rest }) => {
+const Plant = ({ sprite, progress, end: thresholdEnd, alt, onEvent, ...rest }) => {
   return (
-    <CenteredContainer {...rest} onClick={onClick}>
+    <CenteredContainer
+      {...rest}
+      role="button"
+      onClick={e => {
+        e.preventDefault();
+        e.stopPropagation();
+        onEvent();
+      }}
+      onKeyDown={e => {
+        e.preventDefault();
+        e.stopPropagation();
+        onEvent();
+      }}
+    >
       <PaddedSprite url={sprite} alt={alt} progressPercentage />
       {thresholdEnd && <ProgressBar currentValue={progress} maxValue={thresholdEnd} />}
     </CenteredContainer>
@@ -32,7 +45,7 @@ Plant.propTypes = {
   progress: PropTypes.number.isRequired,
   end: PropTypes.number, // Once plant is at max maturity, end does not exist
   alt: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
+  onEvent: PropTypes.func.isRequired
 };
 
 Plant.defaultProps = {
